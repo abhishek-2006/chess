@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.abhishek.chess.chess"
+    namespace = "com.abhishek.chess"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.abhishek.chess.chess"
+        applicationId = "com.abhishek.chess"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 27
@@ -32,8 +32,8 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("debug")
-            shrinkResources = true
-            minifyEnabled = true
+            isShrinkResources = true
+            isMinifyEnabled = true
         }
     }
 }

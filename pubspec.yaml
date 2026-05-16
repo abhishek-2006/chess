@@ -1,4 +1,4 @@
-name: chess_app
+name: Chess
 description: "A Chess Game."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -33,7 +33,7 @@ dependencies:
 
   chess: ^0.8.1
   cupertino_icons: ^1.0.8
-  flutter_native_splash: ^2.4.6
+  flutter_native_splash: ^2.4.7
   shared_preferences: ^2.0.1
   firebase_core: ^4.7.0
   firebase_analytics: ^12.0.0
@@ -41,6 +41,7 @@ dependencies:
   package_info_plus: ^10.0.0
   url_launcher: ^6.2.4
   pub_semver: ^2.1.4
+  google_fonts: ^8.1.0
 
 dev_dependencies:
   flutter_test:
@@ -52,11 +53,57 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
 
-#flutter_native_splash:
-#  color: "#ffffff"
-#  image: assets/splash.png
-#  fullscreen: true
+flutter_native_splash:
+
+  color: "#000000"
+  image: assets/splash.png
+
+  color_dark: "#000000"
+  image_dark: assets/splash.png
+
+  fullscreen: true
+
+  android: true
+  ios: true
+  web: true
+  windows: true
+  macos: true
+  linux: true
+
+  android_12:
+    color: "#000000"
+    image: assets/splash.png
+    icon_background_color: "#000000"
+
+  android_gravity: center
+  ios_content_mode: center
+  web_image_mode: center
+
+flutter_launcher_icons:
+
+  android: true
+  ios: true
+  web:
+    generate: true
+
+  windows:
+    generate: true
+
+  macos:
+    generate: true
+
+  linux:
+    generate: true
+
+  image_path: "assets/logo.png"
+
+  adaptive_icon_background: "#000000"
+  adaptive_icon_foreground: "assets/logo.png"
+
+  background_color: "#000000"
+  theme_color: "#000000"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -70,9 +117,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/pieces/
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

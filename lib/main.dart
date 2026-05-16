@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'firebase_options.dart';
 import 'update_service.dart';
 import 'chess_board.dart';
@@ -9,11 +11,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const ChessApp());
+  runApp(const Chess());
 }
 
-class ChessApp extends StatelessWidget {
-  const ChessApp({super.key});
+class Chess extends StatelessWidget {
+  const Chess({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +23,20 @@ class ChessApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Chess Game',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
+        brightness: Brightness.dark,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF6366F1),
+          brightness: Brightness.dark,
+          surface: const Color(0xFF121212),
+        ),
+        textTheme: GoogleFonts.outfitTextTheme(
+          ThemeData.dark().textTheme,
+        ),
         useMaterial3: true,
       ),
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+      ],
       home: const MainWrapper(),
     );
   }
