@@ -1,16 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
+import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'firebase_options.dart';
-import 'update_service.dart';
-import 'chess_board.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+import 'home_screen.dart';
+import 'update_service.dart';
+
+Future<void> main() async {
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.edgeToEdge,
+  );
+
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+    ),
+  );
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  FlutterNativeSplash.remove();
+
   runApp(const Chess());
 }
 
@@ -21,13 +47,14 @@ class Chess extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Chess Game',
+      title: 'Chess Master',
       theme: ThemeData(
         brightness: Brightness.dark,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF6366F1),
-          brightness: Brightness.dark,
-          surface: const Color(0xFF121212),
+        scaffoldBackgroundColor: const Color(0xFF0B0D12),
+        colorScheme: const ColorScheme.dark(
+          primary: Color(0xFFD4AF37),
+          secondary: Color(0xFF7C4DFF),
+          surface: Color(0xFF141821),
         ),
         textTheme: GoogleFonts.outfitTextTheme(
           ThemeData.dark().textTheme,
@@ -53,13 +80,16 @@ class _MainWrapperState extends State<MainWrapper> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 300));
+      if (!mounted) return;
       UpdateService.check(context);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return const ChessBoardPage();
+    return const HomeScreen();
   }
 }

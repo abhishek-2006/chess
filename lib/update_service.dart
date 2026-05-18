@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:pub_semver/pub_semver.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class UpdateService {
   static const String _owner = "abhishek-2006";
@@ -46,8 +47,7 @@ class UpdateService {
 
   static void _showDialog(BuildContext context, String ver, String url, String notes) {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    // Responsive sizing for small screens (e.g., 5.5 inch devices)
+
     final size = MediaQuery.of(context).size;
     final isSmallScreen = size.width < 360 || size.height < 600;
 
@@ -61,7 +61,7 @@ class UpdateService {
         contentPadding: EdgeInsets.symmetric(horizontal: isSmallScreen ? 16 : 24, vertical: 8),
         title: Row(
           children: [
-            Image.asset('assets/splash.png', width: isSmallScreen ? 24 : 32, height: isSmallScreen ? 24 : 32),
+            Image.asset('assets/logo.png', width: isSmallScreen ? 24 : 32, height: isSmallScreen ? 24 : 32),
             SizedBox(width: isSmallScreen ? 8 : 12),
             Expanded(
               child: Text(
@@ -84,8 +84,16 @@ class UpdateService {
               const SizedBox(height: 4),
               Flexible(
                 child: SingleChildScrollView(
-                  child: Text(notes, style: TextStyle(fontSize: isSmallScreen ? 12 : 13)),
+                  child: MarkdownBody(
+                    data: notes,
+                    shrinkWrap: true,
+                    styleSheet: MarkdownStyleSheet(
+                      p: TextStyle(fontSize: isSmallScreen ? 12 : 13, color: isDark ? Colors.white.withAlpha(230) : Colors.black87),
+                      h2: TextStyle(fontSize: isSmallScreen ? 14 : 15, fontWeight: FontWeight.bold, color: isDark ? Colors.white : Colors.black),
+                      listBullet: TextStyle(color: isDark ? Colors.white70 : Colors.black54),
+                    ),
                 ),
+              ),
               ),
             ],
           ),
@@ -109,7 +117,7 @@ class UpdateService {
                 await launchUrl(uri, mode: LaunchMode.externalApplication);
               }
             },
-            child: Text("Download APK", style: TextStyle(fontSize: isSmallScreen ? 12 : 14)),
+            child: Text("Download Now", style: TextStyle(fontSize: isSmallScreen ? 12 : 14)),
           ),
         ],
       ),
