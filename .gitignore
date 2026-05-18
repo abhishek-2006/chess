@@ -10,8 +10,12 @@
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
 
-lib/firebase_options.dart
 
+.env
+*.env
+lib/firebase_options.dart
+secrets.yaml
+chess.iss
 
 # Flutter repo-specific
 /bin/cache/

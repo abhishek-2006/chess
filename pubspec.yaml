@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 2.0.0+1
 
 environment:
   sdk: ^3.11.4
@@ -42,10 +42,17 @@ dependencies:
   url_launcher: ^6.2.4
   pub_semver: ^2.1.4
   google_fonts: ^8.1.0
+  native_splash_screen: ^3.0.0
+  native_splash_screen_windows: ^3.0.0
+  native_splash_screen_linux: ^3.0.0
+  native_splash_screen_macos: ^3.0.0
+  flutter_animate: ^4.5.0
+  flutter_markdown: ^0.7.7+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  native_splash_screen_cli: ^3.0.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -56,37 +63,49 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
 
 flutter_native_splash:
-
   color: "#000000"
-  image: assets/splash.png
-
   color_dark: "#000000"
-  image_dark: assets/splash.png
+  
+  image: assets/logo.png
+  image_dark: assets/logo.png
 
   fullscreen: true
 
   android: true
   ios: true
   web: true
-  windows: true
-  macos: true
-  linux: true
 
   android_12:
     color: "#000000"
-    image: assets/splash.png
-    icon_background_color: "#000000"
+    image: assets/logo.png
+    color_dark: "#000000"
+    image_dark: assets/logo.png
+    branding: assets/branding.png
+    branding_dark: assets/branding.png
+    branding_mode: bottom
+
+  branding: assets/branding.png
+  branding_dark: assets/branding.png
+  branding_mode: bottom
 
   android_gravity: center
   ios_content_mode: center
   web_image_mode: center
 
+native_splash_screen:
+  image: assets/logo.png
+  color: "#000000"
+  image_dark: assets/logo.png
+  color_dark: "#000000"
+  fullscreen: true
+  windows: true
+  linux: true
+  macos: true
+
 flutter_launcher_icons:
 
   android: true
   ios: true
-  web:
-    generate: true
 
   windows:
     generate: true
@@ -118,8 +137,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/pieces/
     - assets/
+    - assets/pieces/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

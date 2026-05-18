@@ -1,0 +1,69 @@
+version: v1
+
+platforms:
+  windows:
+    enabled: true
+    fallback: true
+
+  linux:
+    enabled: true
+    fallback: true
+
+  macos:
+    enabled: true
+    fallback: true
+
+release:
+  windows:
+    window_width: 1280
+    window_height: 720
+    window_title: "Chess"
+
+    background_color: "#000000"
+
+    image_path: "assets/logo.png"
+    image_width: 512
+    image_height: 512
+    image_scaling: false
+
+    # Branding Image
+    branding_image_path: "assets/branding.png"
+    branding_image_width: 256
+    branding_image_height: 128
+    branding_image_position: "bottom-center"
+
+  linux:
+    window_width: 1280
+    window_height: 720
+    window_title: "Chess"
+
+    background_color: "#000000"
+
+    image_path: "assets/logo.png"
+    image_width: 512
+    image_height: 512
+    image_scaling: false
+
+    # Branding Image
+    branding_image_path: "assets/branding.png"
+    branding_image_width: 256
+    branding_image_height: 128
+    branding_image_position: "bottom-center"
+
+  macos:
+    window_width: 1280
+    window_height: 720
+    window_title: "Chess"
+
+    background_color: "#000000"
+
+    image_path: "assets/logo.png"
+    image_width: 512
+    image_height: 512
+    image_scaling: false
+
+    # Branding Image
+    branding_image_path: "assets/branding.png"
+    branding_image_width: 256
+    branding_image_height: 128
+    branding_image_position: "bottom-center"
